@@ -49,18 +49,18 @@ Shader "wnRainbow/Rainbow"
            normalDirection = -normalDirection;
          }
         float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
-        fixed3 rainbow = tex2D(_Rainbow, float2(i.uv.x, 0.0)).rgb * _Color.rgb;
+        fixed3 rainbowNorm = tex2D(_Rainbow, i.uv).xyz;
 
         float d = dot(normalDirection, viewDirection);
         float fresnel = pow(1.0 - max(0.0, dot(normalDirection, viewDirection)), _Fresnel) * _FresnelColor.a * 9.0;
         half3 finalColor = (
-          rainbow.rgb * _TintOpacity.rgb +
-          rainbow.rgb * _TintOpacity.a +
-          rainbow.rgb * _FresnelColor.rgb * fresnel
+           _Color.rgb * _TintOpacity.rgb +
+           _Color.rgb * _TintOpacity.a +
+           _Color.rgb * _FresnelColor.rgb * fresnel
         );
         float alpha = min((1.0 - i.life), fresnel);
 
-        float3 background = tex2Dproj(_BackgroundTexture, i.screenUV - float4(i.viewNormal, 0.0, 0.0) * 0.05 ).rgb;
+        float3 background = tex2Dproj(_BackgroundTexture, i.screenUV - float4(i.viewNormal + rainbowNorm * 3.0, 0.0, 0.0) * 0.05 ).rgb;
 
         // return fixed4(finalColor * alpha, alpha);
         return fixed4(saturate(background + finalColor), 1.0);
