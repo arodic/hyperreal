@@ -63,7 +63,7 @@ Shader "wnRainbow/Rainbow"
         float3 background = tex2Dproj(_BackgroundTexture, i.screenUV - float4(i.viewNormal, 0.0, 0.0) * 0.05 ).rgb;
 
         // return fixed4(finalColor * alpha, alpha);
-        return fixed4(background + finalColor, 1.0);
+        return fixed4(saturate(background + finalColor), 1.0);
         // return fixed4(i.sound.w, i.sound.w, i.sound.w, 1.0);
         // return fixed4(i.debug, i.debug, i.debug, 1.0);
 
