@@ -152,9 +152,11 @@ void CSMain(uint3 id : SV_DispatchThreadID) {
   dist2 = max(0.0, 1.0 + dist2);
   dist3 = max(0.0, 1.0 + dist3);
 
-  force -= hand1force * dist1 * 0.1;
-  force -= hand2force * dist2 * 0.1;
-  force -= headforce * dist3 * 0.3;
+  if (_Curl > 0.01) {
+    force -= hand1force * dist1 * 0.1;
+    force -= hand2force * dist2 * 0.1;
+    force -= headforce * dist3 * 0.3;
+  }
 
   if (length(force) > 0.01) force = normalize(force) * min(length(force), 0.125);
 
