@@ -34,7 +34,7 @@ public class WorldEvents : MonoBehaviour
 
     private void OnDisable()
     {
-        ViveInput.interact       -= Interaction;
+        ViveInput.interact -= Interaction;
         SpeakScript.endMonologue -= EnableIcons;
     }
 
@@ -54,106 +54,45 @@ public class WorldEvents : MonoBehaviour
 
     private void Interaction(EventType eventType)
     {
-        bool m_fadedOut = false;
-
-        foreach(var interactable in m_interactables)
-        {
-            if(m_currEvent == eventType) continue;
-
-            if(interactable.name == eventType.ToString() + " Interactable")
-            {
-                interactable.SetActive(true);
-                if(interactable.name == "Person Interactable")
-                {
-                    StartCoroutine(FadeAudio.FadeIn(interactable.GetComponent<SpeakScript>().m_audioSource));
-                }
-                else
-                {
-                    StartCoroutine(FadeAudio.FadeIn(interactable.GetComponent<AudioSource>()));
-                }
-                
-                
-                //var fadeOutInter = 
-                //
-                //StartCoroutine(FadeAudio.FadeOut(interactable.GetComponent<AudioSource>()));
-            }
-            else
-            {
-                
-                interactable.SetActive(false);
-            }
-        }
-        m_currEvent = eventType;
-
-
-
-
-
-
-
-
-        //switch(eventType)
-        //{
-        //    case EventType.Fire:
-        //        m_fire.SetActive(true);
-                
-        //        m_water.SetActive(false);
-        //        m_air.SetActive(false);
-        //        m_earth.SetActive(false);
-               
-        //        break;
-        //    case EventType.Water:
-        //        m_water.SetActive(true);
-
-        //        m_fire.SetActive(false);
-        //        m_air.SetActive(false);
-        //        m_earth.SetActive(false);
-        //        break;
-
-        //    case EventType.Earth:
-        //        m_earth.SetActive(true);
-
-        //        m_water.SetActive(false);
-        //        m_fire.SetActive(false);
-        //        m_air.SetActive(false);
-        //        break;
-
-        //    case EventType.Air:
-        //        m_air.SetActive(true);
-
-        //        m_water.SetActive(false);
-        //        m_fire.SetActive(false);
-        //        m_earth.SetActive(false);
-
-        //        break;
-
-
-        //    case EventType.Book:
-        //        m_book.SetActive(true);
-
-        //        break;
-        //    case EventType.None:
-        //        break;
-        //    default:
-        //        break;
-        //}
-    }
-
-    private void FadeOutEffect(EventType nextType)
-    {
-        switch(nextType)
+        switch(eventType)
         {
             case EventType.Fire:
-//                m_fire.GetComponent<Fire>().m_Brightness;
+                m_fire.SetActive(true);
+
+                m_water.SetActive(false);
+                m_air.SetActive(false);
+                m_earth.SetActive(false);
 
                 break;
             case EventType.Water:
+                m_water.SetActive(true);
+
+                m_fire.SetActive(false);
+                m_air.SetActive(false);
+                m_earth.SetActive(false);
                 break;
+
             case EventType.Earth:
+                m_earth.SetActive(true);
+
+                m_water.SetActive(false);
+                m_fire.SetActive(false);
+                m_air.SetActive(false);
                 break;
+
             case EventType.Air:
+                m_air.SetActive(true);
+
+                m_water.SetActive(false);
+                m_fire.SetActive(false);
+                m_earth.SetActive(false);
+
                 break;
+
+
             case EventType.Book:
+                m_book.SetActive(true);
+
                 break;
             case EventType.None:
                 break;
@@ -161,18 +100,3 @@ public class WorldEvents : MonoBehaviour
                 break;
         }
     }
-
-
-    private void CrossFadeEffects(EventType nextType)
-    {
-
-    }
-
-
-
-
-    private IEnumerator FadeOut()
-    {
-        yield return false;
-    }
-}
