@@ -51,9 +51,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc29191a0ee4d1b42a8c5aff3d1c63b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_interactables:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   m_water: {fileID: 0}
   m_fire: {fileID: 0}
   m_air: {fileID: 0}
   m_earth: {fileID: 0}
   m_book: {fileID: 0}
   m_controllerLeft: {fileID: 0}
+  m_crossFadeTime: 2
