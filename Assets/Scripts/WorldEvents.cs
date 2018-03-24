@@ -28,42 +28,7 @@ public class WorldEvents : MonoBehaviour
     {
         ViveInput.interact -= Interaction;
     }
-
-
-
-    private void Update()
-    {
-        //if(m_water.activeSelf)
-        //{
-        //    // turn off other objects.
-        //    m_fire.SetActive(false);
-        //    m_air.SetActive(false);
-        //    m_earth.SetActive(false);
-        //}
-        //else if(m_fire.activeSelf)
-        //{
-        //    m_water.SetActive(false);
-        //    m_air.SetActive(false);
-        //    m_earth.SetActive(false);
-        //}
-        //else if(m_air.activeSelf)
-        //{
-        //    m_water.SetActive(false);
-        //    m_fire.SetActive(false);
-        //    m_earth.SetActive(false);
-        //}
-        //else if(m_earth.activeSelf)
-        //{
-        //    m_water.SetActive(false);
-        //    m_fire.SetActive(false);
-        //    m_air.SetActive(false);
-        //}
-        //else
-        //{
-        //    // No events active.. Do nothing.
-        //}
-    }
-
+    
 
 
     private void Interaction(EventType eventType)
