@@ -188,7 +188,7 @@ public class RealIvy : EditorWindow {
 				drawBranchCounter -= 1;
 				if (drawBranchCounter == -1) {
 					CleanUp ();
-				} 
+				}
 				else {
 					newIvyPoints.branchs.RemoveAt (newIvyPoints.branchs.Count - 1);
 					newIvyPoints.leaves.RemoveAll (a => a.currentbranch == newIvyPoints.branchs.Count);
@@ -210,100 +210,100 @@ public class RealIvy : EditorWindow {
 			}
 		}
 
-		//Esto es para el raycast, si el ratón se mueve por la sceneview, hacemos un raycast y guardamos los valores que nos interesan
-		if (Event.current.type == EventType.MouseMove){
-			RayCastSceneView();
-
-			//Mierda de desarrollo de draw
-			if (newIvy){
-				overLastPoint = false;
-				for (int o = 0; o < newIvyPoints.branchs.Count; o++) {
-					for (int i = 0; i < newIvyPoints.branchs[o].Count; i++) {
-						if (Vector3.Distance(mouseRCPoint, newIvy.transform.rotation * 	newIvyPoints.branchs[o][i] + newIvy.transform.position) < newIvyParameters.stepSize){
-							nearestPoint = newIvy.transform.rotation * newIvyPoints.branchs[o][i] + newIvy.transform.position;
-							overOnePoint = true;
-							overBranchIndex = o;
-							if (i == newIvyPoints.branchs[o].Count - 1){
-								overLastPoint = true;
-							}
-							else{
-								overLastPoint = false;
-							}
-							return;
-						}
-						else{
-							overOnePoint = false;
-						}
-					}
-				}
-			}
-		}
-
-		//Este switch es para el evento de hacer click
-		switch (current.type){
-			//Si el evento actual es mouseUp, entonces hace to la pesca de crear el ivy en su sitio y demás
-			case EventType.MouseUp:{
-				if (placing && current.button == 0 && !current.alt){
-					CreateIvy(mouseRCPoint, mouseRCNormal);
-					placing = !placing;
-					break;
-				}
-				//DESARROLLO DRAWING
-				if (drawing && current.button == 0 && !current.alt){
-					break;
-				}
-				break;
-			}
-			//DESARROLLO DRAWING
-			case EventType.MouseDown:{
-				if (!newIvy){
-					if (drawing && current.button == 0 && !current.alt){
-						CreateIvy(mouseRCPoint, mouseRCNormal);
-						lastDrawPoint = mouseRCPoint;
-						break;
-					}
-				}
-				else{
-					if (drawing && current.button == 0 && !current.alt){
-						if (!overLastPoint){
-							newIvyPoints.branchs.Add(new List<Vector3>());
-							newIvyPoints.lenghts.Add(0f);
-							drawBranchCounter += 1;
-							drawingBranch = drawBranchCounter;
-						}
-						if (overLastPoint){
-							drawingBranch = overBranchIndex;
-						}
-						else{
-							if (overOnePoint){
-								newIvyPoints.branchs[drawingBranch].Add(Quaternion.Inverse(newIvy.transform.rotation) * (nearestPoint - newIvy.transform.position));
-							}
-						
-							else{
-								newIvyPoints.branchs[drawingBranch].Add(Quaternion.Inverse(newIvy.transform.rotation) * (mouseRCPoint - newIvy.transform.position));
-							}
-						}
-						break;
-					}
-				}
-				break;
-			}
-			//DESARROLLO DRAWING
-			case EventType.MouseDrag:{
-				if ((placing || drawing) && current.button == 0 && !current.alt && newIvyPoints){
-					DrawIvy();
-					break;
-				}
-				break;
-			}
-			//Aquí dice que mientras estña la ventana dibujandose o algo similar, quien tiene el control del sceneview es esta ventana (creo)
-			case EventType.Layout:
-				if (placing || drawing){
-					HandleUtility.AddDefaultControl(controlID);
-					break;
-				}
-				break;
-			}
+		// //Esto es para el raycast, si el ratón se mueve por la sceneview, hacemos un raycast y guardamos los valores que nos interesan
+		// if (Event.current.type == EventType.MouseMove){
+		// 	RayCastSceneView();
+    //
+		// 	//Mierda de desarrollo de draw
+		// 	if (newIvy){
+		// 		overLastPoint = false;
+		// 		for (int o = 0; o < newIvyPoints.branchs.Count; o++) {
+		// 			for (int i = 0; i < newIvyPoints.branchs[o].Count; i++) {
+		// 				if (Vector3.Distance(mouseRCPoint, newIvy.transform.rotation * 	newIvyPoints.branchs[o][i] + newIvy.transform.position) < newIvyParameters.stepSize){
+		// 					nearestPoint = newIvy.transform.rotation * newIvyPoints.branchs[o][i] + newIvy.transform.position;
+		// 					overOnePoint = true;
+		// 					overBranchIndex = o;
+		// 					if (i == newIvyPoints.branchs[o].Count - 1){
+		// 						overLastPoint = true;
+		// 					}
+		// 					else{
+		// 						overLastPoint = false;
+		// 					}
+		// 					return;
+		// 				}
+		// 				else{
+		// 					overOnePoint = false;
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// }
+    //
+		// //Este switch es para el evento de hacer click
+		// switch (current.type){
+		// 	//Si el evento actual es mouseUp, entonces hace to la pesca de crear el ivy en su sitio y demás
+		// 	case EventType.MouseUp:{
+		// 		if (placing && current.button == 0 && !current.alt){
+		// 			CreateIvy(mouseRCPoint, mouseRCNormal);
+		// 			placing = !placing;
+		// 			break;
+		// 		}
+		// 		//DESARROLLO DRAWING
+		// 		if (drawing && current.button == 0 && !current.alt){
+		// 			break;
+		// 		}
+		// 		break;
+		// 	}
+		// 	//DESARROLLO DRAWING
+		// 	case EventType.MouseDown:{
+		// 		if (!newIvy){
+		// 			if (drawing && current.button == 0 && !current.alt){
+		// 				CreateIvy(mouseRCPoint, mouseRCNormal);
+		// 				lastDrawPoint = mouseRCPoint;
+		// 				break;
+		// 			}
+		// 		}
+		// 		else{
+		// 			if (drawing && current.button == 0 && !current.alt){
+		// 				if (!overLastPoint){
+		// 					newIvyPoints.branchs.Add(new List<Vector3>());
+		// 					newIvyPoints.lenghts.Add(0f);
+		// 					drawBranchCounter += 1;
+		// 					drawingBranch = drawBranchCounter;
+		// 				}
+		// 				if (overLastPoint){
+		// 					drawingBranch = overBranchIndex;
+		// 				}
+		// 				else{
+		// 					if (overOnePoint){
+		// 						newIvyPoints.branchs[drawingBranch].Add(Quaternion.Inverse(newIvy.transform.rotation) * (nearestPoint - newIvy.transform.position));
+		// 					}
+    //
+		// 					else{
+		// 						newIvyPoints.branchs[drawingBranch].Add(Quaternion.Inverse(newIvy.transform.rotation) * (mouseRCPoint - newIvy.transform.position));
+		// 					}
+		// 				}
+		// 				break;
+		// 			}
+		// 		}
+		// 		break;
+		// 	}
+		// 	//DESARROLLO DRAWING
+		// 	case EventType.MouseDrag:{
+		// 		if ((placing || drawing) && current.button == 0 && !current.alt && newIvyPoints){
+		// 			DrawIvy();
+		// 			break;
+		// 		}
+		// 		break;
+		// 	}
+		// 	//Aquí dice que mientras estña la ventana dibujandose o algo similar, quien tiene el control del sceneview es esta ventana (creo)
+		// 	case EventType.Layout:
+		// 		if (placing || drawing){
+		// 			HandleUtility.AddDefaultControl(controlID);
+		// 			break;
+		// 		}
+		// 		break;
+		// 	}
 
 		//Si estamos en proceso de colocar el Ivy en la escena, se dibuja el gizmo donde le corresponde
 		if (placing){
@@ -421,7 +421,7 @@ public class RealIvy : EditorWindow {
 			GUI.EndGroup();
 
 		EditorGUI.LabelField(new Rect(1, 8, columnWidth - 28, 25), "Presets", realIvyTitle);
-		EditorGUI.DrawRect(new Rect(5, 40, columnWidth-25, 98), Color.gray); 
+		EditorGUI.DrawRect(new Rect(5, 40, columnWidth-25, 98), Color.gray);
 		GUI.BeginGroup(new Rect(5, 30, columnWidth, 140));
 		if (!confirmAction){
 			presetsScroll = GUI.BeginScrollView(new Rect(0, 16, 290, 84), presetsScroll, new Rect(0, 0, 250, 30 * presets.Count), false, false);
@@ -514,7 +514,7 @@ public class RealIvy : EditorWindow {
 			newIvyParameters.stepSize = EditorGUI.FloatField(new Rect(buttonPos * 4.5f, fieldSize), "Step Size", newIvyParameters.stepSize);
 			newIvyParameters.distanceToSurface = EditorGUI.FloatField(new Rect(buttonPos * 5f, fieldSize), "Distance to surface", newIvyParameters.distanceToSurface);
 			GUI.Label(new Rect(buttonPos * 5.75f, new Vector2(270, 28)), "More painting features soon!", realIvyTitle);
-		} 
+		}
 		else {
 			if (GUI.Button (new Rect (buttonPos, halfButtonSize), "Paint", realIvyTabOff)) {
 				if (newIvy) {
@@ -894,7 +894,7 @@ public class RealIvy : EditorWindow {
 
 	//En ese método que se llama también al cerrar, se borra toda la información para que se pueda empezar de nuevo
 	void CleanUp(){
-		if (newIvy){			
+		if (newIvy){
 			newIvyGeom.CleanUp();
 		}
 		//DESARROLLO DRAWING

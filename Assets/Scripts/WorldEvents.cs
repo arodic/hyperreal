@@ -28,7 +28,7 @@ public class WorldEvents : MonoBehaviour
     {
         ViveInput.interact -= Interaction;
     }
-    
+
 
 
     private void Interaction(EventType eventType)
@@ -37,7 +37,7 @@ public class WorldEvents : MonoBehaviour
         {
             case EventType.Fire:
                 m_fire.SetActive(true);
-                
+
                 m_water.SetActive(false);
                 m_air.SetActive(false);
                 m_earth.SetActive(false);
