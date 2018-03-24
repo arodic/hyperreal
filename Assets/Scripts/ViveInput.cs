@@ -51,7 +51,6 @@ public class ViveInput : MonoBehaviour
             print("Enum type  " + type.ToString() + " is wrooooonnnngggg!!!");
             return;
         }
-        
 
         print("Type - " + type);
         if(m_select)
