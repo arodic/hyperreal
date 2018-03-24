@@ -1,0 +1,171 @@
+#pragma kernel CSMain
+
+#include "chunks/snoise.cginc"
+#include "chunks/curlNoise.cginc"
+
+struct Vertex {
+  float3 position;
+  float3 anchor;
+  float3 velocity;
+  float3 curl;
+  float3 normal;
+  float2 uv;
+  float4 sound;
+  float life;
+  float debug;
+  int id;
+};
+struct Index {
+  int id0;
+  int id1;
+  int id2;
+  int id3;
+  int id4;
+  int id5;
+  int id6;
+  int id7;
+};
+
+RWStructuredBuffer<Vertex> vertices;
+StructuredBuffer<Index> indices;
+
+float _Time;
+float _Delta;
+float _Resolution;
+float _xSize;
+float _ySize;
+
+float _Curl;
+float _CurlFreq;
+float _CurlDamping;
+float3 _CurlScroll;
+float _Spring;
+float _Anchor;
+float _Smooth;
+float _Damping;
+
+float4x4 localToWorldMatrix;
+
+float4x4 avatar;
+
+#define PI 3.14159265359
+
+float3 springForce( float3 dir , float d ){
+  float dist = length( dir );
+  if( dist >= .000001 ){
+    dir = normalize( dir );
+    float dif = dist - d;
+    return dif * dif * float(sign(dif)) * -dir;
+  } else {
+    return float3(0,0,0);
+  }
+}
+
+[numthreads(128, 1, 1)]
+void CSMain(uint3 id : SV_DispatchThreadID) {
+  int idx = vertices[id.x].id;
+  Index i = indices[idx];
+
+  float d = 1.0 / _Resolution;
+  float x2 = 2.0 * _xSize;
+
+  float life = vertices[i.id0].life;
+
+  float _lx = vertices[i.id0].uv.x;
+  float _ly = vertices[i.id0].uv.y;
+
+  float sim_active1 = saturate((_lx) * 10.0 );
+  float sim_active2 = saturate((1.0-_lx) * 10.0 );
+  float sim_active3 = saturate((_ly) * 10.0 );
+  float sim_active4 = saturate((1.0-_ly) * 10.0 );
+
+  float sim_active = min(min(sim_active1, sim_active2), min(sim_active3, sim_active4));
+
+  vertices[i.id0].debug = sim_active;
+
+  float _x = vertices[i.id0].uv.x * _xSize;
+  float _y = vertices[i.id0].uv.y * _ySize;
+  float3 _a = float3(_x, _y, 0.0);
+
+  float3 anchor =  mul(localToWorldMatrix, float4(_a.x, _a.y, _a.z, 1.0)).xyz;
+
+  vertices[i.id0].anchor = anchor;
+
+  if (sim_active < 0.05) {
+    vertices[i.id0].curl = (float3)0.0;
+  }
+
+  float3 pos = vertices[i.id0].position;
+  float3 pos1 = vertices[i.id1].position;
+  float3 pos2 = vertices[i.id2].position;
+  float3 pos3 = vertices[i.id3].position;
+  float3 pos4 = vertices[i.id4].position;
+
+  float3 right = pos1 - pos;
+  float3 down = pos2 - pos;
+  float3 left = pos3 - pos;
+  float3 up = pos4 - pos;
+
+  vertices[i.id0].normal = cross(normalize(up), normalize(right));
+
+  vertices[i.id0].velocity *= 1.0 - min(1.0, 10.0 * _Damping * _Delta);
+  float3 force = (float3)0;
+
+  float3 anchorForce = (float3)0;
+  anchorForce = vertices[i.id0].anchor - vertices[i.id0].position;
+  float anchorLength = pow(length(anchorForce) * 0.01, 0.5);
+  vertices[i.id0].position += anchorForce * (1.0 - sim_active);
+  force += anchorForce * 0.2 * anchorLength * _Anchor;
+
+  float3 smooth = (float3)0;
+  smooth = (pos1 + pos2 + pos3 + pos4) / 4.0 - pos;
+  float smoothLenght = pow(length(smooth) * 0.01, 0.5) * _Smooth;
+  smooth *= smoothLenght;
+  smooth *= sim_active;
+  force += smooth * _Smooth;
+
+  float3 curl = (float3)0;
+  vertices[i.id0].curl *= 1.0 - min(1.0, 10.0 * _CurlDamping * _Delta);
+  curl = curlNoise(pos * _CurlFreq - _CurlScroll * _Time) * 0.02;
+  vertices[i.id0].curl += curl * _Curl;
+  vertices[i.id0].position += vertices[i.id0].curl;
+
+  float3 spring = (float3)0;
+  spring += springForce(-left, d);
+  spring += springForce(-down, d);
+  spring += springForce(-up, d);
+  spring += springForce(-right, d);
+  spring = spring * _Spring * 50.0;
+  float springLenght = pow(length(spring) * 0.01, 0.5);
+  spring *= springLenght;
+  spring *= sim_active;
+  force += spring * _Spring;
+
+
+  float3 hand1force = float3(avatar[0][0], avatar[0][1], avatar[0][2]) - vertices[i.id0].position;
+  float3 hand2force = float3(avatar[1][0], avatar[1][1], avatar[1][2]) - vertices[i.id0].position;
+  float3 headforce  = float3(avatar[2][0], avatar[2][1], avatar[2][2]) - vertices[i.id0].position;
+  float dist1 = -length(hand1force) / 0.3;
+  float dist2 = -length(hand2force) / 0.3;
+  float dist3 = -length(headforce) / 0.3;
+  dist1 = max(0.0, 1.0 + dist1);
+  dist2 = max(0.0, 1.0 + dist2);
+  dist3 = max(0.0, 1.0 + dist3);
+
+  force -= hand1force * dist1 * 0.1;
+  force -= hand2force * dist2 * 0.1;
+  force -= headforce * dist3 * 0.3;
+
+  if (length(force) > 0.01) force = normalize(force) * min(length(force), 0.125);
+
+  vertices[i.id0].velocity += force;
+  // vertices[i.id0].velocity *= sim_active;
+  // vertices[i.id0].curl *= sim_active;
+
+  if (idx == 0) {
+    vertices[i.id0].position = (pos1 + pos2) / 2.0;
+    return;
+  }
+
+  vertices[i.id0].position += vertices[i.id0].velocity;
+}
