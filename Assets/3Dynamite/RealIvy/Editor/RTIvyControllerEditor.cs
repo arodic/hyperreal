@@ -98,7 +98,7 @@ public class RTIvyControllerEditor : Editor {
 		object[] args = new object[] {g, tex};
 		editorGUIUtilityType.InvokeMember("SetIconForObject", bindingFlags, null, null, args);
 	}
-		
+
 	public override void OnInspectorGUI () {
 		GUILayoutUtility.GetRect (0f, 5f);
 		Rect labelRect = GUILayoutUtility.GetRect (0f, 20f);
@@ -155,7 +155,7 @@ public class RTIvyControllerEditor : Editor {
 		EditorGUILayout.PropertyField (preWarmEnabled, contentpreWarmEnabled);
 		if (preWarmEnabled.boolValue) {
 			EditorGUILayout.PropertyField (preWarm, contentpreWarm);
-		} 
+		}
 
 		EditorGUILayout.Space ();
 		EditorGUILayout.PropertyField (IvyEnabled);
@@ -203,7 +203,7 @@ public class RTIvyControllerEditor : Editor {
 				Debug.LogWarning ("Check if your materials array still consistent after switching Generate Branches or Generate Leaves values");
 			}
 		}
-		
+
 
 		serializedObject.ApplyModifiedProperties ();
 

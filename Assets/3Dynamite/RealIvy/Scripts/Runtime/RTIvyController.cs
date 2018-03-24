@@ -50,7 +50,7 @@ public class RTIvyController : MonoBehaviour {
 
 	IvyParameters ivyParameters;
 
-	float elapsedTime;
+	public float elapsedTime;
 	float speed;
 	float oldSpeed;
 	bool oldGrowing;
@@ -76,7 +76,7 @@ public class RTIvyController : MonoBehaviour {
 		}
 		growing = false;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (IvyEnabled && !finished) {
@@ -89,7 +89,7 @@ public class RTIvyController : MonoBehaviour {
 			float normalizedElapsedTime = (elapsedTime - delay) / lifeTime;
 			if (speedOverLifeTimeEnabled) {
 				speed = maxSpeed * speedOverLifeTime.Evaluate (normalizedElapsedTime);
-			} 
+			}
 			else {
 				speed = maxSpeed;
 			}
