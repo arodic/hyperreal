@@ -10,16 +10,12 @@ public class SpeakScript : MonoBehaviour
 
     [SerializeField]
     public AudioSource m_audioSource;
+    
 
-
-    private void Start()
-    {
-        m_audioSource = GetComponentInChildren<AudioSource>();
-    }
 
     private void Update()
     {
-        if(!m_audioSource.isPlaying)
+        if(!m_audioSource.isPlaying && m_audioSource.enabled)
             if(endMonologue != null) endMonologue();
     }
 }

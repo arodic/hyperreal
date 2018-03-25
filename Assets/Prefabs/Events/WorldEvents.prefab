@@ -63,4 +63,5 @@ MonoBehaviour:
   m_earth: {fileID: 0}
   m_book: {fileID: 0}
   m_controllerLeft: {fileID: 0}
+  m_controllerRight: {fileID: 0}
   m_crossFadeTime: 2

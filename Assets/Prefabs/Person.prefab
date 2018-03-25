@@ -88,13 +88,15 @@ GameObject:
   - component: {fileID: 33006128346900704}
   - component: {fileID: 114673608985928488}
   - component: {fileID: 82896654674330324}
+  - component: {fileID: 114967790422176826}
+  - component: {fileID: 114961594390542122}
   m_Layer: 0
   m_Name: Person
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4301252485328110
 Transform:
   m_ObjectHideFlags: 1
@@ -273,7 +275,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1858340755999596}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243543042184792320, guid: c94fc1ee78421554090e7e7af8f2cf3c,
     type: 2}
@@ -440,4 +442,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf777ab39cfa67d45abcb56632765906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_audioSource: {fileID: 0}
+  m_audioSource: {fileID: 82666206455748986}
+--- !u!114 &114961594390542122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1915143967704574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f91248ce9e9115549899e7e781539333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 114967790422176826}
+  glitchAudioSource: {fileID: 82896654674330324}
+  monologueAudioSource: {fileID: 82666206455748986}
+  girlMat: {fileID: 0}
+--- !u!114 &114967790422176826
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1915143967704574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7e2f29d996cfa45849686b843c3e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 0
+  fadeStep: 0.02
+  fade: 0
