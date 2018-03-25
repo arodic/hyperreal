@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54844796411729766}
   - component: {fileID: 114991443410649604}
   - component: {fileID: 114240818764599678}
+  - component: {fileID: 114160454189219178}
   m_Layer: 0
   m_Name: Water Interactable
   m_TagString: Interactable
@@ -101,6 +102,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &114160454189219178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1074365583744328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858e55c6251c5a64c984f5b160042870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114240818764599678
 MonoBehaviour:
   m_ObjectHideFlags: 1

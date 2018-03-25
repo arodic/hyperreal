@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54627002807439754}
   - component: {fileID: 114142420094927618}
   - component: {fileID: 114533796408988634}
+  - component: {fileID: 114683743540920560}
   m_Layer: 0
   m_Name: Air Interactable
   m_TagString: Interactable
@@ -114,6 +115,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 3
 --- !u!114 &114533796408988634
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1075481299265376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858e55c6251c5a64c984f5b160042870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114683743540920560
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
