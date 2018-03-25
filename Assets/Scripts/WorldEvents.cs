@@ -49,7 +49,7 @@ public class WorldEvents : MonoBehaviour
             if(interactable.name == EventType.Book.ToString() + " Interactable")
                 continue;
 
-            interactable.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+            interactable.SetActive(true);
         }
     }
 
