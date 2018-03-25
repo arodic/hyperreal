@@ -22,10 +22,9 @@ GameObject:
   - component: {fileID: 33191224314325300}
   - component: {fileID: 23184735417853556}
   - component: {fileID: 114108595535664912}
+  - component: {fileID: 108292742860112434}
   - component: {fileID: 114663915920526588}
   - component: {fileID: 114196172623588912}
-  - component: {fileID: 82835300906928970}
-  - component: {fileID: 108292742860112434}
   - component: {fileID: 114690601343881190}
   m_Layer: 0
   m_Name: Element_Fire
@@ -88,87 +87,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1063038253770180}
   m_Mesh: {fileID: 4300002, guid: af22d9f0e683b164a887d7e2b172d2ec, type: 3}
---- !u!82 &82835300906928970
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1063038253770180}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243474992106345474, guid: c94fc1ee78421554090e7e7af8f2cf3c,
-    type: 2}
-  m_audioClip: {fileID: 8300000, guid: fc8aa4cc6beb0d6438c35dae0ccddd20, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!108 &108292742860112434
 Light:
   m_ObjectHideFlags: 1
@@ -242,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
-  fadeStep: 0.02
+  fadeStep: 0.4
   fade: 0
 --- !u!114 &114690601343881190
 MonoBehaviour:

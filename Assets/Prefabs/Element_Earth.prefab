@@ -76,14 +76,13 @@ GameObject:
   - component: {fileID: 4577357349817542}
   - component: {fileID: 114990288062425404}
   - component: {fileID: 114837268030464308}
-  - component: {fileID: 82186002337756258}
   m_Layer: 0
   m_Name: Element_Earth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4225646907697636
 Transform:
   m_ObjectHideFlags: 1
@@ -264,86 +263,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1528553674290086}
   m_Mesh: {fileID: 0}
---- !u!82 &82186002337756258
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1828895272501872}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0.365
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!114 &114006794468149704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -488,7 +407,8 @@ MonoBehaviour:
   RTIvy: {fileID: 114349268966919044}
   RTGeom: {fileID: 114006794468149704}
   RTLeaves: {fileID: 114893513637552626}
-  IvyEnabled: 1
+  elapsedTime: 0
+  IvyEnabled: 0
 --- !u!114 &114837268030464308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -501,7 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
-  fadeStep: 0.02
+  fadeStep: 0.5
   fade: 0
 --- !u!114 &114893513637552626
 MonoBehaviour:
@@ -539,3 +459,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53516eb26b6c08b4aa85ee21b3edd04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ivy: {fileID: 114416297362884914}
+  mat1: {fileID: 2100000, guid: cdefbaef4feaf0e4db4f03fd0434f4de, type: 2}
+  mat2: {fileID: 2100000, guid: 1d5759bbe35cdc54aba5d7b931d03f78, type: 2}
