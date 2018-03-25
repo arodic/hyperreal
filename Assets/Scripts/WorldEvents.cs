@@ -18,6 +18,8 @@ public class WorldEvents : MonoBehaviour
     [SerializeField]
     private GameObject m_controllerLeft;
     [SerializeField]
+    private GameObject m_controllerRight;
+    [SerializeField]
     private float m_crossFadeTime = 2f;
 
 
@@ -57,38 +59,74 @@ public class WorldEvents : MonoBehaviour
         switch(eventType)
         {
             case EventType.Fire:
-                m_fire.SetActive(true);
+                m_fire.GetComponent<ElementController>().active = true;
 
-                m_water.SetActive(false);
-                m_air.SetActive(false);
-                m_earth.SetActive(false);
+                m_water.GetComponent<ElementController>().active = false;
+                m_air.GetComponent<ElementController>().active = false;
+                m_earth.GetComponent<ElementController>().active = false;
+
+
+                StartCoroutine(FadeAudio.FadeIn(m_fire.GetComponent<AudioSource>()));
+
+                StartCoroutine(FadeAudio.FadeOut(m_water.GetComponent<AudioSource>()));
+                StartCoroutine(FadeAudio.FadeOut(m_air.GetComponent<AudioSource>()));
+                StartCoroutine(FadeAudio.FadeOut(m_earth.GetComponent<AudioSource>()));
+
 
                 break;
             case EventType.Water:
-                m_water.SetActive(true);
+                m_water.GetComponent<ElementController>().active = true;
 
-                m_fire.SetActive(false);
-                m_air.SetActive(false);
-                m_earth.SetActive(false);
+                m_fire.GetComponent<ElementController>().active = false;
+                m_air.GetComponent<ElementController>().active = false;
+                m_earth.GetComponent<ElementController>().active = false;
+
+
+
+
+
+                StartCoroutine(FadeAudio.FadeIn(m_water.GetComponent<AudioSource>()));
+
+                StartCoroutine(FadeAudio.FadeOut(m_fire.GetComponent<AudioSource>()));
+                StartCoroutine(FadeAudio.FadeOut(m_air.GetComponent<AudioSource>()));
+                StartCoroutine(FadeAudio.FadeOut(m_earth.GetComponent<AudioSource>()));
+
+
+
                 break;
 
             case EventType.Earth:
-                m_earth.SetActive(true);
+                m_earth.GetComponent<ElementController>().active = true;
 
-                m_water.SetActive(false);
-                m_fire.SetActive(false);
-                m_air.SetActive(false);
+                m_water.GetComponent<ElementController>().active = false;
+                m_fire.GetComponent<ElementController>().active = false;
+                m_air.GetComponent<ElementController>().active = false;
+
+
+
+                StartCoroutine(FadeAudio.FadeIn(m_earth.GetComponent<AudioSource>()));
+
+                StartCoroutine(FadeAudio.FadeOut(m_water.GetComponent<AudioSource>()));
+                StartCoroutine(FadeAudio.FadeOut(m_water.GetComponent<AudioSource>()));
+                StartCoroutine(FadeAudio.FadeOut(m_air.GetComponent<AudioSource>()));
                 break;
 
             case EventType.Air:
-                m_air.SetActive(true);
+                m_air.GetComponent<ElementController>().active = true;
 
-                m_water.SetActive(false);
-                m_fire.SetActive(false);
-                m_earth.SetActive(false);
+                m_water.GetComponent<ElementController>().active = false;
+                m_fire.GetComponent<ElementController>().active = false;
+                m_earth.GetComponent<ElementController>().active = false;
 
+
+
+
+                StartCoroutine(FadeAudio.FadeIn(m_air.GetComponent<AudioSource>()));
+
+                StartCoroutine(FadeAudio.FadeOut(m_water.GetComponent<AudioSource>()));
+                StartCoroutine(FadeAudio.FadeOut(m_fire.GetComponent<AudioSource>()));
+                StartCoroutine(FadeAudio.FadeOut(m_earth.GetComponent<AudioSource>()));
                 break;
-
 
             case EventType.Book:
                 m_book.SetActive(true);
