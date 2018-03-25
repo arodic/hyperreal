@@ -119,13 +119,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1088255604667208}
-  m_LocalRotation: {x: -0.09354936, y: -0.68429214, z: 0.033902105, w: 0.7223873}
-  m_LocalPosition: {x: -0.738, y: -1.11, z: -2.773}
-  m_LocalScale: {x: 0.012198962, y: 0.012198963, z: 0.012198963}
+  m_LocalRotation: {x: -0.06080807, y: -0.6683854, z: 0.050730098, w: 0.7395876}
+  m_LocalPosition: {x: -0.73799944, y: -1.1099997, z: -2.773002}
+  m_LocalScale: {x: 0.015227773, y: 0.015227776, z: 0.015227776}
   m_Children: []
   m_Father: {fileID: 4301252485328110}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -5.092, y: -87.354004, z: 10.237}
+  m_LocalEulerAnglesHint: {x: -1.268, y: -84.310005, z: 8.996}
 --- !u!4 &4492159569742962
 Transform:
   m_ObjectHideFlags: 1
@@ -214,7 +214,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 428a72942941eb44692975ad81c8643c, type: 2}
+  - {fileID: 2100000, guid: d0881793eff65e14aaa63fce5d641020, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -418,7 +418,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -457,7 +457,7 @@ MonoBehaviour:
   controller: {fileID: 114967790422176826}
   glitchAudioSource: {fileID: 82896654674330324}
   monologueAudioSource: {fileID: 82666206455748986}
-  girlMat: {fileID: 0}
+  girlMat: {fileID: 2100000, guid: d0881793eff65e14aaa63fce5d641020, type: 2}
 --- !u!114 &114967790422176826
 MonoBehaviour:
   m_ObjectHideFlags: 1
