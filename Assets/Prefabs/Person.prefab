@@ -458,6 +458,7 @@ MonoBehaviour:
   glitchAudioSource: {fileID: 82896654674330324}
   monologueAudioSource: {fileID: 82666206455748986}
   girlMat: {fileID: 2100000, guid: d0881793eff65e14aaa63fce5d641020, type: 2}
+  polaroidMat: {fileID: 2100000, guid: 538234efa3c1db445963533a6bfe18bc, type: 2}
 --- !u!114 &114967790422176826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -470,5 +471,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
-  fadeStep: 0.02
+  fadeStep: 0.2
   fade: 0
